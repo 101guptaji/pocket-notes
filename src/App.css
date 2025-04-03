@@ -1,0 +1,66 @@
+
+.app{
+  display: flex;
+}
+
+.sidemenu{
+  width: 25vw;
+  height: 100vh;
+  position: relative;
+
+  .heading{
+    font-size: 35px;
+    font-weight: 400;
+    /* letter-spacing: 0.1rem; */
+    text-align: center;
+    position: sticky;
+    top: 5vh;
+  }
+
+  .newgroup-btn{
+    cursor: pointer;
+    position: fixed;
+    bottom: 4vh;
+    left: 18vw;
+    border-radius: 100%;
+    border: none;
+
+    & img{
+      width: 5vw;
+      height: 5vw;
+    }
+  }
+}
+
+
+.welcome{
+  width: 75vw;
+  height: 100vh;
+  background-color: var(--welcomeColor);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  & h2{
+    font-size: 50px;
+    font-weight: 500;
+    letter-spacing: 0.1rem;
+  }
+
+  & p{
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 0.1rem;
+    line-height: 32px;
+  }
+
+  .encryption{
+    position: fixed;
+    bottom: 2vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }
+}

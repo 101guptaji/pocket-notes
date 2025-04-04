@@ -1,39 +1,98 @@
-
-.app{
+.app {
   display: flex;
 }
 
-.sidemenu{
+
+/************************** Side group List styling  *******************************/
+.sidemenu {
   width: 25vw;
   height: 100vh;
   position: relative;
 
-  .heading{
+  .heading {
     font-size: 35px;
-    font-weight: 400;
-    /* letter-spacing: 0.1rem; */
+    font-weight: 500;
+    color: #000;
+    letter-spacing: 0.02rem;
     text-align: center;
     position: sticky;
     top: 5vh;
+    z-index: 9;
   }
+}
 
-  .newgroup-btn{
+.sidemenu .grp-list{
+  position: absolute;
+  top: 12vh;
+  width: 100%;
+  height: 90vh;
+  scroll-behavior: auto;
+  overflow-y: scroll;
+
+  & li{
+    font-size: 24px;
+    letter-spacing: 0.02rem;
+    font-weight: 500;
     cursor: pointer;
-    position: fixed;
-    bottom: 4vh;
-    left: 18vw;
-    border-radius: 100%;
+    padding-left: 3dvw;
+    padding-top: 3dvh;
+    padding-bottom: 3dvh;
+    border-radius: 16px;
     border: none;
 
-    & img{
-      width: 5vw;
-      height: 5vw;
+    & span{
+      width: 68.9px;
+      height: 68.9px;
+      padding: 15px;
+      margin-right: 20px;
+      font-weight: 400;
+      color: #fff;
     }
   }
 }
 
+.sidemenu .newgroup-btn {
+  width: 25vw;
+  cursor: pointer;
+  background-color: transparent;
+  position: fixed;
+  bottom: 4vh;
+  padding-right: 30px;
+  border-radius: 100%;
+  border: none;
 
-.welcome{
+  & img {
+    width: 93px;
+    height: 93px;
+    float: right;
+  }
+}
+
+@media (max-width:768px){
+  .sidemenu {
+    width: 100vw;
+    padding-left: 40px;
+
+    .heading {
+      font-size: 31.5px;
+      text-align: left;
+    }
+  
+    .newgroup-btn {
+      width: 100vw;
+      padding-right: 70px;
+
+      & img {
+        width: 75px;
+        height: 75px;
+        float: right;
+      }
+    }
+  }
+}
+
+/************************** Welcome side styling  *******************************/
+.welcome {
   width: 75vw;
   height: 100vh;
   background-color: var(--welcomeColor);
@@ -42,25 +101,155 @@
   justify-content: center;
   align-items: center;
 
-  & h2{
+  & h2 {
     font-size: 50px;
     font-weight: 500;
-    letter-spacing: 0.1rem;
+    letter-spacing: 0.02rem;
   }
 
-  & p{
+  & p {
     font-size: 22px;
     font-weight: 400;
-    letter-spacing: 0.1rem;
+    letter-spacing: 0.02rem;
     line-height: 32px;
   }
 
-  .encryption{
+  .encryption {
     position: fixed;
     bottom: 2vh;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 5px;
+  }
+}
+
+@media (max-width:768px){
+  .welcome {
+    width: 0px;
+    display: none;
+  }
+}
+
+
+/************************** create group pop-up styling  *******************************/
+.create-group {
+  width: 740px;
+  height: auto;
+  opacity: 100%;
+  z-index: 10;
+  border: 2px solid #CCCCCC;
+  border-radius: 6px;
+  position: fixed;
+  top: 35vh;
+  left: 20vw;
+  background-color: #fff;
+  padding: 20px 40px;
+  outline: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  & h2 {
+    font-size: 29px;
+    font-weight: 500;
+    letter-spacing: 0.035rem;
+    line-height: 45px;
+  }
+}
+
+.form-row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 30px;
+
+  & label {
+    font-size: 27.31px;
+    font-weight: 500;
+    line-height: 45px;
+    letter-spacing: 0.035em;
+    margin-right: 40px;
+  }
+
+  & input {
+    /* height: 51px; */
+    width: 435px;
+    font-size: 23px;
+    font-weight: 400;
+    line-height: 45px;
+    letter-spacing: 0.035em;
+    border: 2px solid #CCCCCC;
+    border-radius: 22px;
+    padding-left: 1.5vw;
+  }
+
+  .color {
+    margin-right: 15px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+
+  .color:hover {
+    scale: 1.2;
+  }
+}
+
+.group-submit {
+  padding: 5px 30px;
+  background-color: #001F8B;
+  border: none;
+  border-radius: 11px;
+  color: #FFFFFF;
+  font-size: 20px;
+  font-weight: 400;
+  float: right;
+  cursor: pointer;
+}
+
+@media (max-width:768px){
+  .create-group {
+    width: 284px;
+    height: 211px;
+    border: 0.88px solid #CCCCCC;
+    padding: 10px 10px;
+    gap: 5px;
+  
+    & h2 {
+      font-size: 18.4px;
+    }
+  }
+
+  .form-row {
+    margin-bottom: 1px;
+  
+    & label {
+      font-size: 14.6px;
+      margin-right: 10px;
+    }
+  
+    & input {
+      height: 23px;
+      width: 150px;
+      font-size: 10px;
+      border: 0.88px solid #CCCCCC;
+      border-radius: 9.72px;
+      padding-left: 1.5vw;
+    }
+  
+    .color {
+      margin-right: 5px;
+      width: 17.67px;
+      height: 17.67px;
+    }
+  }
+  
+  .group-submit {
+    padding: 5px 50px;
+    border-radius: 6px;
+    font-size: 17px;
+    float: none;
+    margin: 5px 50px;
   }
 }

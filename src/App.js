@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import plusIcon from "./assets/plusIcon.png"
 import WelcomePage from './components/WelcomePage';
 import CreateGroup from './components/CreateGroup';
 import NotesPage from './components/NotesPage';
+import SideMenu from './components/SideMenu';
+
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
 function App() {
   const [data, setData] = useState(JSON.parse(localStorage.getItem("groupNotes")) || []);
@@ -11,6 +13,16 @@ function App() {
   const [isModal, setIsModal] = useState(false);
 
   const [selectedGrp, setSelectedGrp] = useState(null);
+
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResizeWindow = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", handleResizeWindow);
+    return () => {
+      window.removeEventListener("resize", handleResizeWindow);
+    };
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("groupNotes", JSON.stringify(data));
@@ -23,44 +35,46 @@ function App() {
 
   }
 
-  return (
-    <div className='app'>
-      <div className="sidemenu" style={{ opacity: `${isModal ? '50%' : '100%'}` }} onClick={closePopUp}>
-        <h1 className='heading'>Pocket Notes</h1>
-        {
-          data &&
-          <ul className='grp-list'>
-            {
-              data.map((item) => {
-                return (
-                  <li key={item?.id} 
-                    onClick={() => setSelectedGrp(item)} 
-                    style={{backgroundColor: `${selectedGrp && item?.id === selectedGrp?.id ? '#e0dcdc' : 'white'}`}}>
-                    <span style={{ backgroundColor: item?.color, borderRadius: '100%' }}>{item?.logo}</span>
-                    {item?.title}
-                  </li>
-                )
-              })
-            }
-          </ul>
-        }
+  if (width < 768) {
+    return (
+      <Router>
+        <div className='app'>
+          {isModal && <CreateGroup data={data} setData={setData} setIsModal={setIsModal} />}
+          <Routes>
 
-        <button className='newgroup-btn' onClick={() => setIsModal(true)}>
-          <img src={plusIcon} alt="create new group" />
-        </button>
-      </div>
+            <Route path='/' element={<SideMenu width={width} isModal={isModal} setIsModal={setIsModal} closePopUp={closePopUp} data={data} selectedGrp={selectedGrp} setSelectedGrp={setSelectedGrp} />}>
+            </Route>
 
-      {isModal && <CreateGroup data={data} setData={setData} setIsModal={setIsModal}/> }
+            <Route path='/main' element={<NotesPage group={selectedGrp} setSelectedGrp={setSelectedGrp} data={data} setData={setData} isModal={isModal} closePopUp={closePopUp} />}>
+            </Route>
+          </Routes>
+        </div>
+      </Router>
+    )
+  }
+  else {
+    return (
+      <Router>
+        <Routes>
+          <Route path='/' element={
+            <div className='app'>
+              <SideMenu isModal={isModal} setIsModal={setIsModal} closePopUp={closePopUp} data={data} selectedGrp={selectedGrp} setSelectedGrp={setSelectedGrp} />
 
-      {
-        selectedGrp ?
-          <NotesPage group={selectedGrp} data={data} setData ={setData} isModal={isModal} closePopUp={closePopUp} />
-          :
-          <WelcomePage isModal={isModal} closePopUp={closePopUp} />
-      }
+              {isModal && <CreateGroup data={data} setData={setData} setIsModal={setIsModal} />}
 
-    </div>
-  );
+              {
+                selectedGrp ?
+                  <NotesPage group={selectedGrp} setSelectedGrp={setSelectedGrp} data={data} setData={setData} isModal={isModal} closePopUp={closePopUp} />
+                  :
+                  <WelcomePage isModal={isModal} closePopUp={closePopUp} />
+              }
+            </div>}>
+          </Route>
+        </Routes>
+      </Router >
+
+    );
+  }
 }
 
 export default App;

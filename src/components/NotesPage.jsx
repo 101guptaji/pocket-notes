@@ -3,8 +3,9 @@ import React, { useState } from 'react'
 import grayArrow from "../assets/grayArrow.png";
 import blueArrow from "../assets/blueArrow.png";
 import backArrow from "../assets/backArrow.png";
+import { useNavigate } from 'react-router-dom';
 
-const NotesPage = ({ group, data, setData, isModal, closePopUp }) => {
+const NotesPage = ({ group, setSelectedGrp, data, setData, isModal, closePopUp }) => {
     // console.log(group)
 
     const [newNote, setNewNote] = useState("");
@@ -42,9 +43,17 @@ const NotesPage = ({ group, data, setData, isModal, closePopUp }) => {
         }
     }
 
+    const navigate = useNavigate();
+
+    const backToList = () => {
+        setSelectedGrp(null)
+        navigate('/')
+      }
+
     return (
         <div className="notes-container" style={{ opacity: `${isModal ? '50%' : '100%'}` }} onClick={closePopUp}>
             <header className="heading">
+                <img className='backBtn' src={backArrow} alt="back" onClick={backToList}/>
                 <span style={{ backgroundColor: group?.color }}>{group?.logo}</span>
                 <h2 className='title'>{group?.title}</h2>
             </header>
@@ -70,13 +79,12 @@ const NotesPage = ({ group, data, setData, isModal, closePopUp }) => {
                     <textarea
                         className="text-area"
                         placeholder="Enter your text here............"
-                        rows="5"
                         value={newNote} onKeyDown={handleKeyDown}
                         onChange={(e) => setNewNote(e.target.value)}
                     />
                     <img className='enter-key'
                         src={`${newNote ? blueArrow : grayArrow}`}
-                        alt='Enter' width='20px' height='20px'
+                        alt='Enter'
                         onClick={addNote} />
                 </div>
             </footer>

@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import plusIcon from "../assets/plusIcon.png"
 import { useNavigate } from 'react-router-dom'
 
 const SideMenu = ({ width, isModal, setIsModal, closePopUp, data, selectedGrp, setSelectedGrp }) => {
     const navigate = useNavigate();
 
-    if (width < 768 && selectedGrp) {
-        navigate('/main')
-    }
+    useEffect(() => {
+        if (width < 768 && selectedGrp) {
+            navigate('/main')
+        }
+    }, [selectedGrp, width])
+
 
     return (
         <div className="sidemenu" style={{ opacity: `${isModal ? '50%' : '100%'}` }} onClick={closePopUp}>
@@ -30,8 +33,8 @@ const SideMenu = ({ width, isModal, setIsModal, closePopUp, data, selectedGrp, s
                 </ul>
             }
 
-            <button className='newgroup-btn' onClick={() => setIsModal(true)}>
-                <img src={plusIcon} alt="create new group" />
+            <button className='newgroup-btn'>
+                <img src={plusIcon} alt="create new group" onClick={() => setIsModal(true)} />
             </button>
         </div>
     )

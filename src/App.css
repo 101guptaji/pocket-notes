@@ -58,7 +58,6 @@
 
 .sidemenu .newgroup-btn {
   width: 25vw;
-  cursor: pointer;
   background-color: transparent;
   position: fixed;
   bottom: 4vh;
@@ -70,6 +69,7 @@
     width: 93px;
     height: 93px;
     float: right;
+    cursor: pointer;
   }
 }
 

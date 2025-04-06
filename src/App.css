@@ -25,7 +25,7 @@
   position: absolute;
   top: 20dvh;
   width: 100%;
-  height: 80dvh;
+  height: 70dvh;
   overflow-y: scroll;
 
   & li {
@@ -60,10 +60,11 @@
   width: 25vw;
   background-color: transparent;
   position: fixed;
-  bottom: 4vh;
+  bottom: 30px;
   padding-right: 30px;
   border-radius: 100%;
   border: none;
+  z-index: 7;
 
   & img {
     width: 93px;
@@ -436,7 +437,7 @@
 
   .notes-container .notes {
     margin-top: 7vh;
-    height: 68vh;
+    height: 73vh;
 
     .note-card {
       margin: 20px;

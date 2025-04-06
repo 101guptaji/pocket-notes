@@ -14,3 +14,16 @@
 9.	You also need to save meta data like date and time when the notes were saved and last updated.
 10.	DO NOT change the design of your application and keep it as close as possible to the design that has been provided to you. 
 11.	The send button only changes color when there is content in the text box, as per the design given. 
+
+### Built with:
+    Frontend: React.js for a seamless user experience.
+
+### UI:
+![WelcomePage](./UI/WelcomePage.png)
+
+![Create Group Popup](./UI/CreateGroupPopup.png)
+
+![Notes Page](./UI/NotesPage.png)
+
+![Notes List](./UI/NotesList.png)
+

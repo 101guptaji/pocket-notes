@@ -17,7 +17,7 @@ const CreateGroup = ({data, setData, setIsModal}) => {
                 // console.log("Words: ",words);
                 let initial = words.length > 1 ? words[0][0].toUpperCase() + words[1][0].toUpperCase() : words[0][0].toUpperCase();
                 
-                setData([{ id: title, "title": title, logo: initial, color: color, lastUpdated: new Date(Date.now()), notes: [] }, ...data]);
+                setData([{ id: title, "title": title, logo: initial, color: color, lastUpdated: new Date(), notes: [] }, ...data]);
 
                 setErrors(null);
                 setIsModal(false);

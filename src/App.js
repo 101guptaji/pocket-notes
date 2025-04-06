@@ -14,10 +14,10 @@ function App() {
 
   const [selectedGrp, setSelectedGrp] = useState(null);
 
-  const [width, setWidth] = useState(window.innerWidth);
+  const [windowWidth, setwindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
-    const handleResizeWindow = () => setWidth(window.innerWidth);
+    const handleResizeWindow = () => setwindowWidth(window.innerWidth);
     window.addEventListener("resize", handleResizeWindow);
     return () => {
       window.removeEventListener("resize", handleResizeWindow);
@@ -35,17 +35,17 @@ function App() {
 
   }
 
-  if (width < 768) {
+  if (windowWidth < 768) {
     return (
       <Router>
         <div className='app'>
           {isModal && <CreateGroup data={data} setData={setData} setIsModal={setIsModal} />}
           <Routes>
 
-            <Route path='/' element={<SideMenu width={width} isModal={isModal} setIsModal={setIsModal} closePopUp={closePopUp} data={data} selectedGrp={selectedGrp} setSelectedGrp={setSelectedGrp} />}>
+            <Route path='/' element={<SideMenu width={windowWidth} isModal={isModal} setIsModal={setIsModal} closePopUp={closePopUp} data={data} selectedGrp={selectedGrp} setSelectedGrp={setSelectedGrp} />}>
             </Route>
 
-            <Route path='/main' element={<NotesPage group={selectedGrp} setSelectedGrp={setSelectedGrp} data={data} setData={setData} isModal={isModal} closePopUp={closePopUp} />}>
+            <Route path='/main' element={selectedGrp && <NotesPage group={selectedGrp} setSelectedGrp={setSelectedGrp} data={data} setData={setData} isModal={isModal} closePopUp={closePopUp} />}>
             </Route>
           </Routes>
         </div>

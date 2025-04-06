@@ -9,7 +9,7 @@ const SideMenu = ({ width, isModal, setIsModal, closePopUp, data, selectedGrp, s
         if (width < 768 && selectedGrp) {
             navigate('/main')
         }
-    }, [selectedGrp, width])
+    }, [selectedGrp, width, navigate])
 
 
     return (

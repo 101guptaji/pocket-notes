@@ -6,6 +6,7 @@ import NotesPage from './components/NotesPage';
 import SideMenu from './components/SideMenu';
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import NavigateMain from './components/NavigateMain';
 
 function App() {
   const [data, setData] = useState(JSON.parse(localStorage.getItem("groupNotes")) || []);
@@ -26,7 +27,7 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem("groupNotes", JSON.stringify(data));
-    console.log(data);
+    // console.log(data);
   }, [data]);
 
   // clicks outside the popup then you need to close the popup
@@ -55,13 +56,11 @@ function App() {
   else {
     return (
       <Router>
+        {isModal && <CreateGroup data={data} setData={setData} setIsModal={setIsModal} />}
         <Routes>
           <Route path='/' element={
             <div className='app'>
               <SideMenu isModal={isModal} setIsModal={setIsModal} closePopUp={closePopUp} data={data} selectedGrp={selectedGrp} setSelectedGrp={setSelectedGrp} />
-
-              {isModal && <CreateGroup data={data} setData={setData} setIsModal={setIsModal} />}
-
               {
                 selectedGrp ?
                   <NotesPage group={selectedGrp} setSelectedGrp={setSelectedGrp} data={data} setData={setData} isModal={isModal} closePopUp={closePopUp} />
@@ -70,6 +69,7 @@ function App() {
               }
             </div>}>
           </Route>
+          <Route path='/main' element={<NavigateMain width={windowWidth} />} />
         </Routes>
       </Router >
 

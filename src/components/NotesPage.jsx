@@ -27,7 +27,7 @@ const NotesPage = ({ group, setSelectedGrp, data, setData, isModal, closePopUp }
             hour12: true,
         });
 
-        group.lastUpdated =  new Date();
+        group.lastUpdated = new Date();
         group.notes?.push({ text: newNote, id: Date.now(), createdDate: formattedDate, creationTime: formattedTime });
 
         setData([...data]);
@@ -48,12 +48,12 @@ const NotesPage = ({ group, setSelectedGrp, data, setData, isModal, closePopUp }
     const backToList = () => {
         setSelectedGrp(null)
         navigate('/')
-      }
+    }
 
     return (
         <div className="notes-container" style={{ opacity: `${isModal ? '50%' : '100%'}` }} onClick={closePopUp}>
             <header className="heading">
-                <img className='backBtn' src={backArrow} alt="back" onClick={backToList}/>
+                <img className='backBtn' src={backArrow} alt="back" onClick={backToList} />
                 <span style={{ backgroundColor: group?.color }}>{group?.logo}</span>
                 <h2 className='title'>{group?.title}</h2>
             </header>
